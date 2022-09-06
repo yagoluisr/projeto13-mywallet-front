@@ -23,7 +23,7 @@ export default function InsertEntry() {
     )
 }
 
-const Container = styled.div`
+export const Container = styled.div`
     width: 90%;
     height: 98vh;
 

@@ -3,6 +3,7 @@ import './Css/reset.css';
 import GlobalStyle from "./GlobalStyle.js";
 import Home from './Home';
 import InsertEntry from './InsertEntry';
+import InsertOutput from './InsertOutput';
 import Login from './Login';
 import Register from './Register';
 
@@ -18,6 +19,7 @@ export default function App() {
       {/* <Register /> */}
       {/* <Home /> */}
       <InsertEntry />
+      <InsertOutput />
       
     </>
   );
