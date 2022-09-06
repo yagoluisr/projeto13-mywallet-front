@@ -4,8 +4,12 @@ const GlobalStyle = createGlobalStyle`
 
     body {
         background: #8C11BE;
-        font-family: 'Raleway', sans-serif;
-        margin-top: 160px;
+        
+        * {
+            font-family: 'Raleway', sans-serif;
+            box-sizing: border-box;
+        }
+        //margin-top: 160px;
         
     }
 `

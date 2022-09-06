@@ -1,6 +1,7 @@
 import './Css/reset.css';
 //import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import GlobalStyle from "./GlobalStyle.js";
+import Home from './Home';
 import Login from './Login';
 import Register from './Register';
 
@@ -13,7 +14,8 @@ export default function App() {
     <>
       <GlobalStyle />
       {/* <Login /> */}
-      <Register />
+      {/* <Register /> */}
+      <Home />
       
     </>
   );
