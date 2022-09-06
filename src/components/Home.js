@@ -12,7 +12,8 @@ export default function Home() {
             </Header>
 
             <Historic>
-                <span>Não há registros de entrada ou saída</span>
+                {/* <span>Não há registros de entrada ou saída</span> */}
+
             </Historic>
 
             <Buttons>
@@ -30,7 +31,7 @@ export default function Home() {
     )
 }
 
-const Container = styled.div`
+export const Container = styled.div`
     width: 90%;
     height: 98vh;
 
@@ -39,7 +40,6 @@ const Container = styled.div`
     align-items: center;
 
     margin: auto;
-
 `
 
 const Header = styled.div`
