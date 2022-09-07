@@ -2,27 +2,39 @@ import styled from 'styled-components';
 import { ReactComponent as Exit } from './Assets/Exit.svg';
 import { ReactComponent as More } from './Assets/More.svg';
 import { ReactComponent as Less } from './Assets/Less.svg';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+
 
 export default function Home() {
+    const [result, setResult] = useState(10);
 
+
+    
     const extract = [
         {
             date: '30/11',
             description: 'Mercado',
-            value: '-542,54'
+            value: -542.54
         },
         {
             date: '27/11',
             description: 'Compras Churrasco',
-            value: '-67,60'
+            value: -67.60
         },
         {
             date: '15/11',
             description: 'Salário',
-            value: '3000,00'
+            value: 3000.00
         }
     ]
 
+    let a = 0;
+
+    extract.forEach( obj => {
+        a += obj.value
+    })
 
     return (
         <Container>
@@ -52,7 +64,7 @@ export default function Home() {
                 
                     <Balance>
                         <Result>Saldo</Result>
-                        <Value>3000,00</Value>
+                        <Value result={result} >{ a }</Value>
                     </Balance>
                 </>
                 }
@@ -60,14 +72,20 @@ export default function Home() {
             </Historic>
 
             <Buttons>
-                <div>
-                    <More />
-                    <span>Nova entrada</span>
-                </div>
-                <div>
-                    <Less />
-                    <span>Nova saída</span>
-                </div>
+                <Link to='/novaentrada'>
+                    <div >
+                        <More />
+                        <span>Nova entrada</span>
+                    </div>
+                </Link>
+                
+                <Link to='/novasaida'>
+                    <div>
+                        <Less />
+                        <span>Nova saída</span>
+                    </div>
+                </Link>
+                
             </Buttons>
 
         </Container>
@@ -92,7 +110,14 @@ const Value = styled.div`
     font-weight: 400;
     font-size: 17px;
     line-height: 20px;
-    color: #03AC00 // #C70000
+    color: #000000;  // #C70000
+    color: ${ props => props.result === 0 ?
+     '#000000' 
+    : 
+    props.result < 0 ?
+     '#C70000' 
+     : 
+     '#03AC00' }
 `
 
 const Date = styled.div`
@@ -195,7 +220,7 @@ const Buttons = styled.div`
     display: flex;
     justify-content: space-between;
 
-    div {
+    a {
         width: 48%;
         height: 114px;
 
@@ -203,14 +228,27 @@ const Buttons = styled.div`
         flex-direction: column;
         justify-content: space-between;
 
-        padding: 11px;
-
         margin-top: 15px;
+
+        border-radius: 5px;
+    }
+
+    div {
+        
+        width: 100%;
+        height: 100%;
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+        padding: 10px;
 
         border-radius: 5px;
         background-color: #A328D6;
 
         span {
+            width: 20px;
             font-weight: 700;
             font-size: 17px;
             line-height: 20px;
