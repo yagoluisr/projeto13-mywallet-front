@@ -13,6 +13,21 @@ export default function Home() {
 
             <Historic>
                 {/* <span>Não há registros de entrada ou saída</span> */}
+                <Extract>
+                    <div>
+                        <Date>30/11</Date>
+                        <Description>
+                            <h6>Almoço Mãe</h6>
+                            <h5>39,90</h5>
+                        </Description>
+                    </div>
+
+                </Extract>
+
+                <Balance>
+                    <Result>Saldo</Result>
+                    <Value>3000,00</Value>
+                </Balance>
 
             </Historic>
 
@@ -30,6 +45,34 @@ export default function Home() {
         </Container>
     )
 }
+
+const Balance = styled.div`
+    width: 95%;
+
+    display: flex;
+    justify-content: space-between;
+`
+
+const Result = styled.div`
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 20px;
+    color: #000000;
+`
+
+const Value = styled.div`
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 20px;
+    color: #03AC00 // #C70000
+`
+
+const Date = styled.div`
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #C6C6C6;
+`
 
 export const Container = styled.div`
     width: 90%;
@@ -82,7 +125,41 @@ const Historic = styled.div`
 
         color: #868686;
     }
+
 `
+
+const Extract = styled.div`
+    width: 95%;
+    height: 90%;
+
+    div {
+        display: flex;
+        
+    } 
+     
+`
+const Description = styled.div`
+    width: 100%;
+    padding-left: 15px;
+
+    display: flex;
+    justify-content: space-between;
+
+    h6 {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+    }
+
+    h5 {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        color: #C70000 //#03AC00; 
+    }
+`
+
+
 
 const Buttons = styled.div`
     width: 100%;

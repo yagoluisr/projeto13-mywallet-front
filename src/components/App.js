@@ -17,9 +17,9 @@ export default function App() {
       <GlobalStyle />
       {/* <Login /> */}
       {/* <Register /> */}
-      {/* <Home /> */}
-      <InsertEntry />
-      <InsertOutput />
+      <Home />
+      {/* <InsertEntry /> */}
+      {/* <InsertOutput /> */}
       
     </>
   );
