@@ -29,10 +29,10 @@ export default function Login() {
                 <input 
                     name = 'email' 
                     placeholder='E-mail' 
-                    type='text'
+                    type='email'
                     value={data.email}
                     onChange={updateData}
-                    required
+                    //required
                 ></input>
 
                 <input
@@ -41,7 +41,7 @@ export default function Login() {
                     type='password'
                     value={data.password}
                     onChange={updateData}
-                    required
+                    //required
                 ></input>
 
                 <button type='submit'>Entrar</button>
@@ -98,7 +98,7 @@ export const Form = styled.form`
         border: none;
     }
 
-    button {
+    button[type=submit] {
         height: 46px;
         background: #A328D6;
         border: none;
