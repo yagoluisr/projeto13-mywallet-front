@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Form, Sign_in } from './Login';
+import { Link } from 'react-router-dom';
 
 
 export default function Register() {
@@ -33,7 +34,10 @@ export default function Register() {
                 <button type='submit'>Cadastrar</button>
         </Form>
 
-        <p>Já tem uma conta? Entre agora!</p>
+
+        <Link to='/sign-in'>
+            <p>Já tem uma conta? Entre agora!</p>
+        </Link>
 
         </Sign_in>
     )

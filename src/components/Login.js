@@ -1,27 +1,55 @@
 import styled from 'styled-components';
-
+import { useNavigate, Link } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function Login() {
+
+    const [data, setData] = useState({
+        email: '',
+        password: ''
+    })
+
+    function updateData(e) {
+        setData({
+            ...data,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    function handleLogin(e) {
+        e.preventDefault();
+        //promise p/ back-end
+    }
+
     return (
         <Sign_in>  
             <span>MyWallet</span>
 
-            <Form>
+            <Form onSubmit={handleLogin}>
                 <input 
                     name = 'email' 
-                    placeholder='E-mail' >
-                </input>
+                    placeholder='E-mail' 
+                    type='text'
+                    value={data.email}
+                    onChange={updateData}
+                    required
+                ></input>
 
                 <input
                     name='password'
                     placeholder='Senha'
+                    type='password'
+                    value={data.password}
+                    onChange={updateData}
+                    required
                 ></input>
 
                 <button type='submit'>Entrar</button>
             </Form>
 
-            <p>Primeira vez? Cadastre-se!</p>
-
+            <Link to='/sign-up'>
+                <p>Primeira vez? Cadastre-se!</p>
+            </Link>
         </Sign_in>
     )
 }
