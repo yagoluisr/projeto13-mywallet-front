@@ -4,6 +4,26 @@ import { ReactComponent as More } from './Assets/More.svg';
 import { ReactComponent as Less } from './Assets/Less.svg';
 
 export default function Home() {
+
+    const extract = [
+        {
+            date: '30/11',
+            description: 'Mercado',
+            value: '-542,54'
+        },
+        {
+            date: '27/11',
+            description: 'Compras Churrasco',
+            value: '-67,60'
+        },
+        {
+            date: '15/11',
+            description: 'Salário',
+            value: '3000,00'
+        }
+    ]
+
+
     return (
         <Container>
             <Header>
@@ -12,22 +32,30 @@ export default function Home() {
             </Header>
 
             <Historic>
-                {/* <span>Não há registros de entrada ou saída</span> */}
-                <Extract>
-                    <div>
-                        <Date>30/11</Date>
-                        <Description>
-                            <h6>Almoço Mãe</h6>
-                            <h5>39,90</h5>
-                        </Description>
-                    </div>
+                { extract.length === 0 ? 
+                    <span>Não há registros de entrada ou saída</span>
+                :
+                <>
+                    <Extract>
+                        
+                        {extract.map((obj,key) => (
+                            <div key={key}>
+                                <Date>{obj.date}</Date>
+                                <Description>
+                                    <h6>{obj.description}</h6>
+                                    <h5>{obj.value}</h5>
+                                </Description>
+                            </div>
+                        ))}
 
-                </Extract>
-
-                <Balance>
-                    <Result>Saldo</Result>
-                    <Value>3000,00</Value>
-                </Balance>
+                    </Extract>
+                
+                    <Balance>
+                        <Result>Saldo</Result>
+                        <Value>3000,00</Value>
+                    </Balance>
+                </>
+                }
 
             </Historic>
 
@@ -134,7 +162,7 @@ const Extract = styled.div`
 
     div {
         display: flex;
-        
+        margin-bottom: 5px;
     } 
      
 `
