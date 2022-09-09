@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import { Form, Sign_in } from './Login';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { register } from './Services/Service';
 
 
 export default function Register() {
+    const navigate = useNavigate();
 
     const [data, setData] = useState({
         name: '',
@@ -23,7 +25,15 @@ export default function Register() {
     function handleRegister(e) {
         e.preventDefault();
 
-        //promise p/ back-end
+        register(data).then((res) => {
+            console.log(res.data);
+            alert('Usuário criado com sucesso !');
+            navigate('/sign-in');
+        }).catch((error) => {
+            alert(error.response.data)
+        })
+
+
     }
 
     return (
