@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { login } from './Services/Service';
 
 export default function Login() {
+    const navigate = useNavigate();
 
     const [data, setData] = useState({
         email: '',
@@ -20,7 +21,12 @@ export default function Login() {
     function handleLogin(e) {
         e.preventDefault();
         
-  
+        login(data).then((res) => {
+            console.log(res.data)
+            navigate('/');
+        }).catch((error) => {
+            alert(error.response.data);
+        })
     }
 
     return (

@@ -16,6 +16,7 @@ export default function Register() {
     console.log(data)
 
     function updateData(e) {
+        delete data.confirmPassword
         setData({
             ...data,
             [e.target.name]: e.target.value
@@ -32,8 +33,6 @@ export default function Register() {
         }).catch((error) => {
             alert(error.response.data)
         })
-
-
     }
 
     return (
