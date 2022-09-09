@@ -2,58 +2,50 @@ import styled from 'styled-components';
 import { ReactComponent as Exit } from './Assets/Exit.svg';
 import { ReactComponent as More } from './Assets/More.svg';
 import { ReactComponent as Less } from './Assets/Less.svg';
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { searchUserData } from './Services/Service';
+
+
 
 
 
 export default function Home() {
-    const [result, setResult] = useState(10);
+    const [result, setResult] = useState(0);
+    const [userData, setUserData] = useState([]);
 
+    let token = 'be924665-afd6-4dfc-bcb2-434051c015ba'
+    //'c3b1cc6d-0095-40b4-b157-99fd5c0e37a2'    test
+    //'be924665-afd6-4dfc-bcb2-434051c015ba'    Thor
 
-    
-    const extract = [
-        {
-            date: '30/11',
-            description: 'Mercado',
-            value: -542.54
-        },
-        {
-            date: '27/11',
-            description: 'Compras Churrasco',
-            value: -67.60
-        },
-        {
-            date: '15/11',
-            description: 'Salário',
-            value: 3000.00
-        }
-    ]
+    useEffect(() => {
+        searchUserData(token).then((res) => {
+            //console.log(res.data);
+            setUserData(res.data);
+        }).catch((res)=> {
+            console.log(res)
+        });
+    },[result]);
 
-    let a = 0;
-
-    extract.forEach( obj => {
-        a += obj.value
-    })
 
     return (
         <Container>
             <Header>
-                <span>Olá, Fulano</span>
+                <span>Olá, { userData.name }</span>
                 <Exit />
             </Header>
 
             <Historic>
-                { extract.length === 0 ? 
+                { userData.length === 0 || userData.extract.length === 0 ? 
                     <span>Não há registros de entrada ou saída</span>
                 :
                 <>
                     <Extract>
                         
-                        {extract.map((obj,key) => (
+                        {userData.extract.map((obj,key) => (
                             <div key={key}>
                                 <Date>{obj.date}</Date>
-                                <Description>
+                                <Description type={obj.value}>
                                     <h6>{obj.description}</h6>
                                     <h5>{obj.value}</h5>
                                 </Description>
@@ -64,7 +56,7 @@ export default function Home() {
                 
                     <Balance>
                         <Result>Saldo</Result>
-                        <Value result={result} >{ a }</Value>
+                        <Value result={result} >{ result }</Value>
                     </Balance>
                 </>
                 }
@@ -208,7 +200,7 @@ const Description = styled.div`
         font-weight: 400;
         font-size: 16px;
         line-height: 19px;
-        color: #C70000 //#03AC00; 
+        color: ${props => props.type < 0 ? '#C70000' : '#03AC00' };
     }
 `
 

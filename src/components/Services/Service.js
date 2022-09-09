@@ -2,6 +2,14 @@ import axios from 'axios';
 
 const BASE_URL = 'http://localhost:5000'
 
+function creatConfig(token) {
+    const config =
+    {
+        headers: { Authorization: `Bearer ${token}` }
+    }
+    return config;
+}
+
 function register(body) {
     const promise = axios.post(`${BASE_URL}/sign-up`, body);
     return promise;
@@ -12,5 +20,11 @@ function login(body) {
     return promise;
 }
 
+function searchUserData(token) {
+    const config = creatConfig(token)
+    const promise = axios.get(`${BASE_URL}/`, config);
+    return promise;
+}
 
-export { register, login };
+
+export { register, login, searchUserData };
