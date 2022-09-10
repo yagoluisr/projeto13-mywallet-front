@@ -32,5 +32,11 @@ function insertEntry(body, token) {
     return promise;
 }
 
+function insertOutput(body,token) {
+    const config = creatConfig(token);
+    const promise = axios.post(`${BASE_URL}/novasaida`, body, config);
+    return promise;
+}
 
-export { register, login, searchUserData, insertEntry };
+
+export { register, login, searchUserData, insertEntry, insertOutput };

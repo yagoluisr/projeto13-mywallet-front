@@ -1,17 +1,24 @@
 import dayjs from 'dayjs';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import UserContext from './Contexts/ContextAPI';
 import { Container } from './InsertEntry';
 import { Form } from './Login';
+import { insertOutput } from './Services/Service';
 
 export default function InsertOutput() {
+    const { token } = useContext(UserContext);
+    const { userId } = useContext(UserContext);
+    
     const navigate = useNavigate();
 
     const [data, setData] = useState({
+        userId,
         date: dayjs().format('DD/MM'),
         value: '',
-        description: ''
+        description: '',
+        type: 'debit'
     })
 
     function updateDataValue(e) {
@@ -31,8 +38,12 @@ export default function InsertOutput() {
     function handleOutput(e) {
         e.preventDefault();
 
-        //promise back-end
-        navigate('/');
+        insertOutput(data, token).then(res => {
+            console.log(res.data)
+            navigate('/');
+        }).catch(error => {
+            console.log(error);
+        });
     }
     
 

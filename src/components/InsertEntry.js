@@ -12,10 +12,6 @@ export default function InsertEntry() {
     
     const navigate = useNavigate();
 
-    //let token = 'be924665-afd6-4dfc-bcb2-434051c015ba'
-    //'c3b1cc6d-0095-40b4-b157-99fd5c0e37a2'    test
-    //'be924665-afd6-4dfc-bcb2-434051c015ba'    Thor
-
     const [data, setData] = useState({
         userId,
         date: dayjs().format('DD/MM'),
@@ -34,16 +30,12 @@ export default function InsertEntry() {
     function handleInsert(e) {
         e.preventDefault();
 
-        //promise back-end
         insertEntry(data, token).then(res => {
-            console.log(res.data);
+            navigate('/');
         }).catch(error => {
             console.log(error);
         });
-        navigate('/');
     }
-
-    console.log(data)
 
     return (
         <Container>
