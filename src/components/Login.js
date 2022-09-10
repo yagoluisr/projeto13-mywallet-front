@@ -25,14 +25,16 @@ export default function Login() {
     function handleLogin(e) {
         e.preventDefault();
         
-        login(data).then((res) => {
-            console.log(res.data)
-            setToken(res.data.token);
-            setUserId(res.data.userId);
-            navigate('/');
-        }).catch((error) => {
-            alert(error.response.data);
-        })
+        login(data)
+            .then((res) => {
+                setToken(res.data.token);
+                setUserId(res.data.userId);
+                navigate('/');
+            })
+            .catch(() => {
+            alert('Usuário e/ou senha inválido');
+            }
+        );
     }
 
     return (
