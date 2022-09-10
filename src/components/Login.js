@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 import { useNavigate, Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { login } from './Services/Service';
+import UserContext from './Contexts/ContextAPI';
 
 export default function Login() {
+    const { token, setToken } = useContext(UserContext);
+    const { userId, setUserId } = useContext(UserContext);
+
     const navigate = useNavigate();
 
     const [data, setData] = useState({
@@ -23,6 +27,8 @@ export default function Login() {
         
         login(data).then((res) => {
             console.log(res.data)
+            setToken(res.data.token);
+            setUserId(res.data.userId);
             navigate('/');
         }).catch((error) => {
             alert(error.response.data);

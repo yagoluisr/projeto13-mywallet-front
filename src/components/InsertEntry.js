@@ -1,18 +1,23 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { Form } from './Login';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
 import { insertEntry } from './Services/Service';
+import UserContext from './Contexts/ContextAPI';
 
 export default function InsertEntry() {
+    const { token } = useContext(UserContext);
+    const { userId } = useContext(UserContext);
+    
     const navigate = useNavigate();
 
-    let token = 'be924665-afd6-4dfc-bcb2-434051c015ba'
+    //let token = 'be924665-afd6-4dfc-bcb2-434051c015ba'
     //'c3b1cc6d-0095-40b4-b157-99fd5c0e37a2'    test
     //'be924665-afd6-4dfc-bcb2-434051c015ba'    Thor
 
     const [data, setData] = useState({
+        userId,
         date: dayjs().format('DD/MM'),
         description: '',
         value: '',

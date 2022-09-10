@@ -14,12 +14,14 @@ import { useState } from 'react';
 
 export default function App() {
   const [token, setToken] = useState('');
-  const [userId, setUsetId] = useState('');
+  const [userId, setUserId] = useState('');
+
+  console.log(token,userId);
 
   return (
     <BrowserRouter>
       <GlobalStyle />
-      <UserContext.Provider value={{token, setToken, userId, setUsetId}}>
+      <UserContext.Provider value={{token, setToken, userId, setUserId}}>
         <Routes>
           <Route path={'/sign-in'} element={<Login />}/>
           <Route path={'/sign-up'} element={<Register />}/>
