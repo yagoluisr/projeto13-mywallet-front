@@ -13,10 +13,8 @@ export default function Register() {
         password: ''
     });
 
-    console.log(data)
-
     function updateData(e) {
-        delete data.confirmPassword
+        
         setData({
             ...data,
             [e.target.name]: e.target.value
@@ -26,8 +24,12 @@ export default function Register() {
     function handleRegister(e) {
         e.preventDefault();
 
+        if(data.password !== data.confirmPassword){
+            return alert('A senha não confere');
+        }
+
+
         register(data).then((res) => {
-            console.log(res.data);
             alert('Usuário criado com sucesso !');
             navigate('/sign-in');
         }).catch((error) => {
@@ -48,7 +50,7 @@ export default function Register() {
                     type='text'
                     value={data.name}
                     onChange={updateData}
-                    //required
+                    required
                 ></input>
 
                 <input 
@@ -57,25 +59,25 @@ export default function Register() {
                     type='email'
                     value={data.email}
                     onChange={updateData}
-                    //required
+                    required
                 ></input>
 
                 <input
                     name='password'
                     placeholder='Senha'
-                    type='text'
+                    type='password'
                     value={data.password}
                     onChange={updateData}
-                    //required
+                    required
                 ></input>
 
                 <input
-                    name='confirm password'
+                    name='confirmPassword'
                     placeholder='Confirmar a senha'
-                    type='text'
+                    type='password'
                     value={data.confirmPassword}
                     onChange={updateData}
-                    //required
+                    required
                 ></input>
 
                 <button type='submit'>Cadastrar</button>
