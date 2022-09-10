@@ -12,22 +12,27 @@ export default function Home() {
     const { token } = useContext(UserContext);
     const { userId } = useContext(UserContext);
 
-    const [result, setResult] = useState(0);
     const [userData, setUserData] = useState([]);
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        searchUserData(token).then((res) => {
-            setUserData(res.data);
-        }).catch((res)=> {
-            console.log(res)
-        });
-    },[result]);
+        searchUserData(token)
+            .then((res) => {
+                setUserData(res.data);
+            }).catch((res)=> {
+                console.log(res)
+            }
+        );
+    },[]);
+    
+    let soma = 0;
+    userData.extract?.forEach(obj => soma += obj.value );
 
-function exit(){
-    return navigate('/sign-in');
-}
+    function exit(){
+        return navigate('/sign-in');
+    }
+
     return (
         <Container>
             <Header>
@@ -47,7 +52,7 @@ function exit(){
                                 <Date>{obj.date}</Date>
                                 <Description type={obj.value}>
                                     <h6>{obj.description}</h6>
-                                    <h5>{obj.value}</h5>
+                                    <h5>{obj.value.toFixed(2)}</h5>
                                 </Description>
                             </div>
                         ))}
@@ -56,7 +61,7 @@ function exit(){
                 
                     <Balance>
                         <Result>Saldo</Result>
-                        <Value result={result} >{ result }</Value>
+                        <Value result={soma} >{ soma.toFixed(2) }</Value>
                     </Balance>
                 </>
                 }
@@ -102,7 +107,6 @@ const Value = styled.div`
     font-weight: 400;
     font-size: 17px;
     line-height: 20px;
-    color: #000000;  // #C70000
     color: ${ props => props.result === 0 ?
      '#000000' 
     : 
@@ -159,6 +163,7 @@ const Historic = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    
 
     span {
         display: flex;
@@ -176,6 +181,8 @@ const Historic = styled.div`
 const Extract = styled.div`
     width: 95%;
     height: 90%;
+
+    overflow: auto;
 
     div {
         display: flex;

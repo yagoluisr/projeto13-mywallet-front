@@ -48,7 +48,7 @@ export default function InsertEntry() {
                     type='number'
                     value={data.value}
                     onChange={updateData}
-                    //required
+                    required
                 ></input>
 
                 <input
@@ -57,7 +57,7 @@ export default function InsertEntry() {
                     type='text'
                     value={data.description}
                     onChange={updateData}
-                    //required
+                    required
                 ></input>
 
                 <button type='submit'>Salvar entrada</button>

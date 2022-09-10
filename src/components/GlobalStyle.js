@@ -4,6 +4,15 @@ const GlobalStyle = createGlobalStyle`
 
     body {
         background: #8C11BE;
+
+        .root {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+           
+        }
         
         * {
             font-family: 'Raleway', sans-serif;

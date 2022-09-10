@@ -71,6 +71,8 @@ export default function Login() {
 }
 
 export const Sign_in = styled.div`
+    max-width: 500px;
+
     display: flex;
     flex-direction: column;
     align-items: center;

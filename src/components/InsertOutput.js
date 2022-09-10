@@ -55,10 +55,10 @@ export default function InsertOutput() {
                 <input
                     name='value'
                     placeholder='Valor'
-                    type='text'
+                    type='number'
                     value={data.value}
                     onChange={updateDataValue}
-                    //required
+                    required
                 ></input>
 
                 <input
@@ -67,7 +67,7 @@ export default function InsertOutput() {
                     type='text'
                     value={data.description}
                     onChange={updateDataDescription}
-                    //required
+                    required
                 ></input>
 
                 <button type='submit'>Salvar saída</button>
