@@ -3,12 +3,9 @@ import { ReactComponent as Exit } from './Assets/Exit.svg';
 import { ReactComponent as More } from './Assets/More.svg';
 import { ReactComponent as Less } from './Assets/Less.svg';
 import { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { searchUserData } from './Services/Service';
 import UserContext from './Contexts/ContextAPI';
-
-
-
 
 
 export default function Home() {
@@ -18,25 +15,24 @@ export default function Home() {
     const [result, setResult] = useState(0);
     const [userData, setUserData] = useState([]);
 
-    //let token = 'be924665-afd6-4dfc-bcb2-434051c015ba'
-    //'c3b1cc6d-0095-40b4-b157-99fd5c0e37a2'    test
-    //'be924665-afd6-4dfc-bcb2-434051c015ba'    Thor
+    const navigate = useNavigate();
 
     useEffect(() => {
         searchUserData(token).then((res) => {
-            //console.log(res.data);
             setUserData(res.data);
         }).catch((res)=> {
             console.log(res)
         });
     },[result]);
 
-
+function exit(){
+    return navigate('/sign-in');
+}
     return (
         <Container>
             <Header>
                 <span>Olá, { userData.name }</span>
-                <Exit />
+                <Exit onClick={exit}/>
             </Header>
 
             <Historic>

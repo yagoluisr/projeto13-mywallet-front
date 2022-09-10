@@ -48,7 +48,7 @@ export default function Login() {
                     type='email'
                     value={data.email}
                     onChange={updateData}
-                    //required
+                    required
                 ></input>
 
                 <input
@@ -57,7 +57,7 @@ export default function Login() {
                     type='password'
                     value={data.password}
                     onChange={updateData}
-                    //required
+                    required
                 ></input>
 
                 <button type='submit'>Entrar</button>
