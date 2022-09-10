@@ -3,14 +3,20 @@ import styled from 'styled-components';
 import { Form } from './Login';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
+import { insertEntry } from './Services/Service';
 
 export default function InsertEntry() {
     const navigate = useNavigate();
 
+    let token = 'be924665-afd6-4dfc-bcb2-434051c015ba'
+    //'c3b1cc6d-0095-40b4-b157-99fd5c0e37a2'    test
+    //'be924665-afd6-4dfc-bcb2-434051c015ba'    Thor
+
     const [data, setData] = useState({
         date: dayjs().format('DD/MM'),
         description: '',
-        value: ''
+        value: '',
+        type: 'credit'
     });
 
     function updateData(e) {
@@ -24,6 +30,11 @@ export default function InsertEntry() {
         e.preventDefault();
 
         //promise back-end
+        insertEntry(data, token).then(res => {
+            console.log(res.data);
+        }).catch(error => {
+            console.log(error);
+        });
         navigate('/');
     }
 

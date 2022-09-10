@@ -26,5 +26,11 @@ function searchUserData(token) {
     return promise;
 }
 
+function insertEntry(body, token) {
+    const config = creatConfig(token)
+    const promise = axios.post(`${BASE_URL}/novaentrada`, body, config);
+    return promise;
+}
 
-export { register, login, searchUserData };
+
+export { register, login, searchUserData, insertEntry };
