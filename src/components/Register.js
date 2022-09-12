@@ -14,7 +14,6 @@ export default function Register() {
     });
 
     function updateData(e) {
-        
         setData({
             ...data,
             [e.target.name]: e.target.value
@@ -28,8 +27,7 @@ export default function Register() {
             return alert('A senha não confere');
         }
 
-
-        register(data).then((res) => {
+        register(data).then(() => {
             alert('Usuário criado com sucesso !');
             navigate('/sign-in');
         }).catch((error) => {

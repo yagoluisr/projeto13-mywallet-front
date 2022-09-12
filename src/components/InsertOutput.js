@@ -39,7 +39,6 @@ export default function InsertOutput() {
         e.preventDefault();
 
         insertOutput(data, token).then(res => {
-            console.log(res.data)
             navigate('/');
         }).catch(error => {
             console.log(error);
